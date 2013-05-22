@@ -1,19 +1,5 @@
 package com.absolute.daytracker.ws.resource;
 
-/**
- * Purpose : The JAX-RS interface for operating on calendar resources. Author : Andrew Won Description: This file provides a
- * JAX-RS interface for a web service resource allowing web clients to interact with the web service.
- */
-
-/*
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Revision History: -----------------
- *
- * Ver Date Modified by: Description of change/modification ----- ------------- ------------
- * ---------------------------------------- 1.0.0 21-April-2013 A. Won Initial version/release
- *
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
-
 import java.util.List;
 
 import javax.annotation.security.RolesAllowed;
@@ -82,7 +68,7 @@ public interface CalendarResource {
      */
     @PUT
     @Path("{id}")
-    @RolesAllowed({"headmaster", "faculty", "staff"})
+    @RolesAllowed({"administrator", "user", "visitor"})
     Response createOrUpdateCalendar(@PathParam("id") Long id, Calendar calendar);
 
     /**
