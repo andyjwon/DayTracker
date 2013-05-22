@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.absolute.daytracker.ws</groupId>
   <artifactId>daytracker</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>DayTracker Maven Webapp</name>
   <url>https://github.com/andyjwon/DayTracker</url>
@@ -12,7 +12,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring.version>3.1.2.RELEASE</spring.version>
     <jersey.version>1.13</jersey.version>
-    <netbeans.hint.deploy.server>Tomcat70</netbeans.hint.deploy.server>
   </properties>
 
   <dependencies>
@@ -76,17 +75,17 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>9.1-901.jdbc4</version>
+    </dependency>
 
 
     <dependency>
       <groupId>commons-dbcp</groupId>
       <artifactId>commons-dbcp</artifactId>
       <version>1.4</version>
-    </dependency>
-    <dependency>
-      <groupId>postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-      <version>9.1-901.jdbc4</version>
     </dependency>
     <dependency>
       <groupId>commons-beanutils</groupId>
