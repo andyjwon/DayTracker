@@ -12,23 +12,24 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import com.absolute.daytracker.ws.util.DateTimeXmlAdapter;
+import com.google.common.base.Objects;
 
 @Entity
 @XmlRootElement
 public class EventOccurrence {
     private Long id;
     private Long eventId;
-    private DateTime from;
-    private DateTime to;
+    private DateTime start;
+    private DateTime end;
 
     public EventOccurrence() {
         // no-arg constructor
     }
 
-    public EventOccurrence(Long eventId, DateTime from, DateTime to) {
+    public EventOccurrence(Long eventId, DateTime start, DateTime end) {
         this.eventId = eventId;
-        this.from = from;
-        this.to = to;
+        this.start = start;
+        this.end = end;
     }
 
     @Id
@@ -52,21 +53,45 @@ public class EventOccurrence {
 
     @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
     @XmlJavaTypeAdapter(value = DateTimeXmlAdapter.class)
-    public DateTime getFrom() {
-        return from;
+    public DateTime getStart() {
+        return start;
     }
 
-    public void setFrom(DateTime from) {
-        this.from = from;
+    public void setStart(DateTime start) {
+        this.start = start;
     }
 
     @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
     @XmlJavaTypeAdapter(value = DateTimeXmlAdapter.class)
-    public DateTime getTo() {
-        return to;
+    public DateTime getEnd() {
+        return end;
     }
 
-    public void setTo(DateTime to) {
-        this.to = to;
+    public void setEnd(DateTime end) {
+        this.end = end;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof EventOccurrence) {
+            return id == EventOccurrence.class.cast(o).getId();
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return this.id.intValue();
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("id", this.id)
+                .add("eventId", this.eventId)
+                .add("start", this.start)
+                .add("end", this.end)
+                .toString();
     }
 }

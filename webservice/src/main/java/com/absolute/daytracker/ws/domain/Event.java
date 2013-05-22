@@ -6,6 +6,7 @@ import org.joda.time.DateTime;
 
 import com.absolute.daytracker.ws.types.Privacy;
 import com.absolute.daytracker.ws.types.Repetition;
+import com.google.common.base.Objects;
 
 public class Event {
     private Long id;
@@ -132,6 +133,39 @@ public class Event {
 
     public void setOccurrences(List<EventOccurrence> occurrences) {
         this.occurrences = occurrences;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Event) {
+            return id == Event.class.cast(o).getId();
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return this.id.intValue();
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("id", this.id)
+                .add("title", this.title)
+                .add("description", this.description)
+                .add("owner", this.owner)
+                .add("allDay", this.allDay)
+                .add("busy", this.busy)
+                .add("location", this.location)
+                .add("privacy", this.privacy)
+                .add("repetition", this.repetition)
+                .add("repetitionEndDate", this.repetitionEndDate)
+                .add("attendees", this.attendees)
+                .add("reminders", this.reminders)
+                .add("occurrences", this.occurrences)
+                .toString();
     }
 
 }

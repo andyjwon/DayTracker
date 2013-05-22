@@ -3,6 +3,7 @@ package com.absolute.daytracker.ws.domain;
 import org.joda.time.DateTime;
 
 import com.absolute.daytracker.ws.types.Notification;
+import com.google.common.base.Objects;
 
 public class Reminder {
     private DateTime dateTime;
@@ -27,5 +28,23 @@ public class Reminder {
 
     public Notification getNotification() {
         return notification;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Reminder) {
+            return dateTime.equals(Reminder.class.cast(o).getDateTime())
+                    && notification.equals(Reminder.class.cast(o).getNotification());
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("dateTime", this.dateTime)
+                .add("notification", this.notification)
+                .toString();
     }
 }

@@ -3,6 +3,7 @@ package com.absolute.daytracker.ws.domain;
 import org.joda.time.DateTime;
 
 import com.absolute.daytracker.ws.types.Repetition;
+import com.google.common.base.Objects;
 
 public class Task {
     private Long id;
@@ -76,6 +77,33 @@ public class Task {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Task) {
+            return id == Task.class.cast(o).getId();
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return this.id.intValue();
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("id", this.id)
+                .add("date", this.date)
+                .add("deadline", this.deadline)
+                .add("completed", this.completed)
+                .add("repetition", this.repetition)
+                .add("repetitionEndDate", this.repetitionEndDate)
+                .add("quantity", this.quantity)
+                .toString();
     }
 
 }
