@@ -1,20 +1,36 @@
 package com.absolute.daytracker.ws.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import com.absolute.daytracker.ws.types.Repetition;
+import com.absolute.daytracker.ws.util.DateTimeXmlAdapter;
 import com.google.common.base.Objects;
 
+@Entity
+@XmlRootElement
 public class Task {
     private Long id;
     private Integer priority;
     private DateTime date;
     private DateTime deadline;
+    private Integer quantityCompleted;
     private Boolean completed;
     private Repetition repetition;
     private DateTime repetitionEndDate;
     private Integer quantity;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @XmlAttribute
     public Long getId() {
         return id;
     }
@@ -31,6 +47,8 @@ public class Task {
         this.priority = priority;
     }
 
+    @Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
+    @XmlJavaTypeAdapter(value=DateTimeXmlAdapter.class)
     public DateTime getDate() {
         return date;
     }
@@ -39,12 +57,25 @@ public class Task {
         this.date = date;
     }
 
+    @Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
+    @XmlJavaTypeAdapter(value=DateTimeXmlAdapter.class)
     public DateTime getDeadline() {
         return deadline;
     }
 
     public void setDeadline(DateTime deadline) {
         this.deadline = deadline;
+    }
+
+    public Integer getQuantityCompleted() {
+        return quantityCompleted;
+    }
+
+    public void setQuantityCompleted(Integer quantityCompleted) {
+        this.quantityCompleted = quantityCompleted;
+        if (this.quantityCompleted == this.quantity) {
+            setCompleted(true);
+        }
     }
 
     public Boolean getCompleted() {
@@ -63,6 +94,8 @@ public class Task {
         this.repetition = repetition;
     }
 
+    @Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
+    @XmlJavaTypeAdapter(value=DateTimeXmlAdapter.class)
     public DateTime getRepetitionEndDate() {
         return repetitionEndDate;
     }

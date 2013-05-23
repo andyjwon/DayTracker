@@ -1,7 +1,13 @@
 package com.absolute.daytracker.ws.domain;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Lob;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.google.common.base.Objects;
 
+@Embeddable
+@XmlRootElement
 public class Location {
     private String location;
 
@@ -13,6 +19,7 @@ public class Location {
         this.location = location;
     }
 
+    @Lob
     public String getLocation() {
         return location;
     }

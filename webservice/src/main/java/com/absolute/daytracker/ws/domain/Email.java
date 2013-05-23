@@ -1,7 +1,13 @@
 package com.absolute.daytracker.ws.domain;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Lob;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.google.common.base.Objects;
 
+@Embeddable
+@XmlRootElement
 public class Email {
     private String email;
 
@@ -13,6 +19,7 @@ public class Email {
         this.email = email;
     }
 
+    @Lob
     public String getEmail() {
         return email;
     }

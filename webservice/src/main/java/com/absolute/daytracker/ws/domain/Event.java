@@ -2,12 +2,35 @@ package com.absolute.daytracker.ws.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import com.absolute.daytracker.ws.types.Privacy;
 import com.absolute.daytracker.ws.types.Repetition;
 import com.google.common.base.Objects;
 
+import com.absolute.daytracker.ws.util.DateTimeXmlAdapter;
+
+@Entity
+@XmlRootElement
 public class Event {
     private Long id;
     private String title;
@@ -23,6 +46,9 @@ public class Event {
     private List<Reminder> reminders;
     private List<EventOccurrence> occurrences;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @XmlAttribute
     public Long getId() {
         return id;
     }
@@ -31,6 +57,7 @@ public class Event {
         this.id = id;
     }
 
+    @Lob
     public String getTitle() {
         return title;
     }
@@ -39,6 +66,7 @@ public class Event {
         this.title = title;
     }
 
+    @Lob
     public String getDescription() {
         return description;
     }
@@ -71,6 +99,7 @@ public class Event {
         this.busy = busy;
     }
 
+    @XmlTransient
     public Location getLocation() {
         return location;
     }
@@ -95,6 +124,8 @@ public class Event {
         this.repetition = repetition;
     }
 
+    @Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
+    @XmlJavaTypeAdapter(value=DateTimeXmlAdapter.class)
     public DateTime getRepetitionEndDate() {
         return repetitionEndDate;
     }
@@ -103,6 +134,7 @@ public class Event {
         this.repetitionEndDate = repetitionEndDate;
     }
 
+    @ElementCollection
     public List<Email> getAttendees() {
         return attendees;
     }
@@ -115,6 +147,7 @@ public class Event {
         return attendees.contains(attendee) ? false : attendees.add(attendee);
     }
 
+    @ElementCollection
     public List<Reminder> getReminders() {
         return reminders;
     }
@@ -127,6 +160,13 @@ public class Event {
         return reminders.contains(reminder) ? false : reminders.add(reminder);
     }
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @OrderColumn
+    @JoinTable(
+        joinColumns = @JoinColumn(name = "event_id"),
+        inverseJoinColumns = @JoinColumn(name = "eventoccurrence_id")
+    )
+    @LazyCollection(LazyCollectionOption.FALSE)
     public List<EventOccurrence> getOccurrences() {
         return occurrences;
     }

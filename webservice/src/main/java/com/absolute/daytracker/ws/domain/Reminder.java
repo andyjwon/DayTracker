@@ -1,10 +1,18 @@
 package com.absolute.daytracker.ws.domain;
 
+import javax.persistence.Embeddable;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import com.absolute.daytracker.ws.types.Notification;
+import com.absolute.daytracker.ws.util.DateTimeXmlAdapter;
 import com.google.common.base.Objects;
 
+@Embeddable
+@XmlRootElement
 public class Reminder {
     private DateTime dateTime;
     private Notification notification;
@@ -18,6 +26,8 @@ public class Reminder {
         this.dateTime = dateTime;
     }
 
+    @Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
+    @XmlJavaTypeAdapter(value=DateTimeXmlAdapter.class)
     public DateTime getDateTime() {
         return dateTime;
     }
