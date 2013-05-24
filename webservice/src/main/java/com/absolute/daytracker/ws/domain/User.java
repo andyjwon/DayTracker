@@ -21,6 +21,8 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.google.common.base.Objects;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name="serviceuser")
@@ -106,5 +108,15 @@ public class User implements Serializable {
 
     public void setRoles(List<UserRole> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("id", this.id)
+                .add("email", this.email)
+                .add("active", this.active)
+                .add("roles", this.roles)
+                .toString();
     }
 }

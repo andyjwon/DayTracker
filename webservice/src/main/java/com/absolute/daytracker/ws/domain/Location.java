@@ -4,8 +4,6 @@ import javax.persistence.Embeddable;
 import javax.persistence.Lob;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.google.common.base.Objects;
-
 @Embeddable
 @XmlRootElement
 public class Location {
@@ -39,8 +37,6 @@ public class Location {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
-                .add("location", this.location)
-                .toString();
+        return location;
     }
 }

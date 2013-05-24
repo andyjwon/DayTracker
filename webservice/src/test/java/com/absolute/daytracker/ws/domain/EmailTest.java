@@ -36,11 +36,11 @@ public class EmailTest {
         String expected2;
 
         Email e1 = new Email("daytracker@example.org");
-        expected1 = "Email{email=daytracker@example.org}";
+        expected1 = "daytracker@example.org";
 
         Email e2 = new Email();
         e2.setEmail("daytracker@example.com");
-        expected2 = "Email{email=daytracker@example.com}";
+        expected2 = "daytracker@example.com";
 
         assertThat(e1.toString(), is(expected1));
         assertThat(e2.toString(), is(expected2));

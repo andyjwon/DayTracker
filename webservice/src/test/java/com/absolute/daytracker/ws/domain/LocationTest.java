@@ -36,11 +36,11 @@ public class LocationTest {
         String expected2;
 
         Location l1 = new Location("700 E. Birch St. #9783, Brea, CA 92822");
-        expected1 = "Location{location=700 E. Birch St. #9783, Brea, CA 92822}";
+        expected1 = "700 E. Birch St. #9783, Brea, CA 92822";
 
         Location l2 = new Location();
         l2.setLocation("1 LMU Dr., Los Angeles, CA 90045");
-        expected2 = "Location{location=1 LMU Dr., Los Angeles, CA 90045}";
+        expected2 = "1 LMU Dr., Los Angeles, CA 90045";
 
         assertThat(l1.toString(), is(expected1));
         assertThat(l2.toString(), is(expected2));

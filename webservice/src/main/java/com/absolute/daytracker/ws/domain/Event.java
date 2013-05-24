@@ -46,6 +46,28 @@ public class Event {
     private List<Reminder> reminders;
     private List<EventOccurrence> occurrences;
 
+    public Event() {
+        // no-args constructor
+    }
+
+    public Event(Long id, String title, String description, User owner, Boolean allDay, Boolean busy,
+            Location location, Privacy privacy, Repetition repetition, DateTime repetitionEndDate,
+            List<Email> attendees, List<Reminder> reminders, List<EventOccurrence> occurrences) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.owner = owner;
+        this.allDay = allDay;
+        this.busy = busy;
+        this.location = location;
+        this.privacy = privacy;
+        this.repetition = repetition;
+        this.repetitionEndDate = repetitionEndDate;
+        this.attendees = attendees;
+        this.reminders = reminders;
+        this.occurrences = occurrences;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @XmlAttribute

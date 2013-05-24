@@ -4,8 +4,6 @@ import javax.persistence.Embeddable;
 import javax.persistence.Lob;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.google.common.base.Objects;
-
 @Embeddable
 @XmlRootElement
 public class Email {
@@ -39,9 +37,7 @@ public class Email {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
-                .add("email", this.email)
-                .toString();
+        return email;
     }
 
 }
