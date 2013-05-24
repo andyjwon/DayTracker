@@ -11,6 +11,10 @@ import com.google.common.base.Objects;
 public class Email {
     private String email;
 
+    public Email() {
+        // no-args constructor
+    }
+
     public Email(String email) {
         this.email = email;
     }
@@ -27,7 +31,7 @@ public class Email {
     @Override
     public boolean equals(Object o) {
         if (o instanceof Email) {
-            return email.equals(Email.class.cast(o).toString());
+            return email.equals(Email.class.cast(o).getEmail());
         } else {
             return false;
         }

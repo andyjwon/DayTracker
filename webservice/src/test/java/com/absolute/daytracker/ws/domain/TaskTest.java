@@ -17,7 +17,7 @@ public class TaskTest {
     public void fieldsSetByFullConstructorCanBeRead() {
         DateTime date = new DateTime(2013, 5, 31, 10, 30, 0);
         DateTime deadline = new DateTime(2013, 6, 1, 10, 30, 0);
-        Task t = new Task(1, date, deadline, 0, false, Repetition.NONE, null, 1);
+        Task t = new Task(null, 1, date, deadline, 0, false, Repetition.NONE, null, 1);
 
         assertNull(t.getId());
         assertThat(t.getPriority(), is(1));
@@ -34,7 +34,7 @@ public class TaskTest {
     public void fieldsSetByPartialConstructorCanBeRead() {
         DateTime date = new DateTime(2013, 5, 31, 10, 30, 0);
         DateTime deadline = new DateTime(2013, 6, 1, 10, 30, 0);
-        Task t = new Task(1, date, deadline, Repetition.NONE, null, 1);
+        Task t = new Task(null, 1, date, deadline, Repetition.NONE, null, 1);
 
         assertNull(t.getId());
         assertThat(t.getPriority(), is(1));
@@ -96,7 +96,7 @@ public class TaskTest {
 
         DateTime date = new DateTime(2013, 5, 31, 10, 30, 0);
         DateTime deadline = new DateTime(2013, 6, 1, 10, 30, 0);
-        Task t1 = new Task(1, date, deadline, 0, false, Repetition.NONE, null, 1);
+        Task t1 = new Task(null, 1, date, deadline, 0, false, Repetition.NONE, null, 1);
 
         sb = new StringBuilder("Task{");
         sb

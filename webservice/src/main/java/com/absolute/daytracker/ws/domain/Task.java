@@ -32,13 +32,14 @@ public class Task {
         // no-arg constructor
     }
 
-    public Task(Integer priority, DateTime date, DateTime deadline, Repetition repetition,
+    public Task(Long id, Integer priority, DateTime date, DateTime deadline, Repetition repetition,
             DateTime repetitionEndDate, Integer quantity) {
-        this(priority, date, deadline, 0, false, repetition, repetitionEndDate, quantity);
+        this(id, priority, date, deadline, 0, false, repetition, repetitionEndDate, quantity);
     }
 
-    public Task(Integer priority, DateTime date, DateTime deadline, Integer quantityCompleted,
+    public Task(Long id, Integer priority, DateTime date, DateTime deadline, Integer quantityCompleted,
             Boolean completed, Repetition repetition, DateTime repetitionEndDate, Integer quantity) {
+        this.id = id;
         this.priority = priority;
         this.date = date;
         this.deadline = deadline;
