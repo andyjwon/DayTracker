@@ -23,10 +23,11 @@ public class EventOccurrence {
     private DateTime end;
 
     public EventOccurrence() {
-        // no-arg constructor
+        // no-args constructor
     }
 
-    public EventOccurrence(Long eventId, DateTime start, DateTime end) {
+    public EventOccurrence(Long id, Long eventId, DateTime start, DateTime end) {
+        this.id = id;
         this.eventId = eventId;
         this.start = start;
         this.end = end;
