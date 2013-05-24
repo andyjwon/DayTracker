@@ -11,6 +11,10 @@ import com.google.common.base.Objects;
 public class Location {
     private String location;
 
+    public Location() {
+        // no-args constructor
+    }
+
     public Location(String location) {
         this.location = location;
     }
@@ -27,7 +31,7 @@ public class Location {
     @Override
     public boolean equals(Object o) {
         if (o instanceof Location) {
-            return location.equals(Location.class.cast(o).toString());
+            return location.equals(Location.class.cast(o).getLocation());
         } else {
             return false;
         }
