@@ -3,14 +3,12 @@ package com.absolute.daytracker.ws.domain;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 import org.joda.time.DateTime;
 import org.junit.Test;
 
 import com.absolute.daytracker.ws.types.Notification;
-import com.absolute.daytracker.ws.types.Repetition;
 
 public class ReminderTest {
 

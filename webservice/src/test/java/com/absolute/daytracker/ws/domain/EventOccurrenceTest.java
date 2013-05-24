@@ -9,8 +9,6 @@ import static org.junit.Assert.assertThat;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
-import com.absolute.daytracker.ws.types.Repetition;
-
 public class EventOccurrenceTest {
 
     @Test

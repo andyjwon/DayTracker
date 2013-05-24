@@ -6,10 +6,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
-import org.joda.time.DateTime;
 import org.junit.Test;
-
-import com.absolute.daytracker.ws.types.Repetition;
 
 public class EmailTest {
 
