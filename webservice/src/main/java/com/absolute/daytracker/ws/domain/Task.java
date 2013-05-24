@@ -28,6 +28,27 @@ public class Task {
     private DateTime repetitionEndDate;
     private Integer quantity;
 
+    public Task() {
+        // no-arg constructor
+    }
+
+    public Task(Integer priority, DateTime date, DateTime deadline, Repetition repetition,
+            DateTime repetitionEndDate, Integer quantity) {
+        this(priority, date, deadline, 0, false, repetition, repetitionEndDate, quantity);
+    }
+
+    public Task(Integer priority, DateTime date, DateTime deadline, Integer quantityCompleted,
+            Boolean completed, Repetition repetition, DateTime repetitionEndDate, Integer quantity) {
+        this.priority = priority;
+        this.date = date;
+        this.deadline = deadline;
+        this.quantityCompleted = quantityCompleted;
+        this.completed = completed;
+        this.repetition = repetition;
+        this.repetitionEndDate = repetitionEndDate;
+        this.quantity = quantity;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @XmlAttribute
@@ -130,8 +151,10 @@ public class Task {
     public String toString() {
         return Objects.toStringHelper(this)
                 .add("id", this.id)
+                .add("priority", this.priority)
                 .add("date", this.date)
                 .add("deadline", this.deadline)
+                .add("quantityCompleted", this.quantityCompleted)
                 .add("completed", this.completed)
                 .add("repetition", this.repetition)
                 .add("repetitionEndDate", this.repetitionEndDate)
