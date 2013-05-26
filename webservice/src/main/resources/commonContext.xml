@@ -40,4 +40,23 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+
+    <bean id="eventOccurrenceDaoImpl"
+        class="com.absolute.daytracker.ws.dao.EventOccurrenceDaoHibernateImpl"
+        autowire="byName"
+    />
+
+    <bean id="eventOccurrenceDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.absolute.daytracker.ws.dao.EventOccurrenceDao</value>
+        </property>
+
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <!-- <value>userDaoImpl</value> -->
+            </list>
+        </property>
+    </bean>
+
 </beans>
