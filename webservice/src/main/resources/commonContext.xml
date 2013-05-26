@@ -40,11 +40,28 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <bean id="userDaoImpl"
+        class="edu.lmu.cs.eccms.ws.dao.UserDaoHibernateImpl"
+        autowire="byName"
+    />
 
     <bean id="eventOccurrenceDaoImpl"
         class="com.absolute.daytracker.ws.dao.EventOccurrenceDaoHibernateImpl"
         autowire="byName"
     />
+
+    <bean id="userDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>edu.lmu.cs.eccms.ws.dao.UserDao</value>
+        </property>
+
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>userDaoImpl</value>
+            </list>
+        </property>
+    </bean>
 
     <bean id="eventOccurrenceDao" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="proxyInterfaces">
@@ -54,7 +71,7 @@
         <property name="interceptorNames">
             <list>
                 <value>hibernateInterceptor</value>
-                <!-- <value>userDaoImpl</value> -->
+                <value>userDaoImpl</value>
             </list>
         </property>
     </bean>
